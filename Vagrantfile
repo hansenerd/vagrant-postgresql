@@ -7,6 +7,7 @@ Vagrant::Config.run do |config|
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
   config.vm.define "database" do |cfg|
+    cfg.vm.forward_port 11211, 11211
     cfg.vm.forward_port 5432, 5432
     cfg.vm.forward_port 80, 8080
     cfg.vm.provision :chef_solo do |chef|
@@ -14,6 +15,7 @@ Vagrant::Config.run do |config|
       chef.add_recipe("apt")
       chef.add_recipe("postgresql::contrib")
       chef.add_recipe("postgresql::server")
+      chef.add_recipe("memcached")
       chef.json = {
         :postgresql => {
           :version  => "9.1",
@@ -33,7 +35,13 @@ Vagrant::Config.run do |config|
                 :encoding => "utf8", :locale => "en_US.UTF8",
                 :extensions => "hstore" },
           ],
-        }
+        },
+        :memcached => {
+          :memory => "128",
+          :user => "nobody",
+          :port => "11211",
+          :listen => "0.0.0.0",
+        },
       }
     end
   end
