@@ -12,6 +12,7 @@ Vagrant::Config.run do |config|
     cfg.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = File.join(HERE, 'cookbooks')
       chef.add_recipe("apt")
+      chef.add_recipe("postgresql::contrib")
       chef.add_recipe("postgresql::server")
       chef.add_recipe("phppgadmin")
       chef.json = {
@@ -24,7 +25,14 @@ Vagrant::Config.run do |config|
           ],
           :users => [
             { :username => "postgres", :password => "password",
-              :superuser => true, :login => true, :createdb => true }
+              :superuser => true, :login => true, :createdb => true },
+            { :username => "test", :password => "testing",
+              :superuser => false, :login => true, :createdb => false },
+          ],
+          :databases => [
+              { :name => "testdb", :owner => "test", :template => "template0",
+                :encoding => "utf8", :locale => "en_US.UTF8",
+                :extensions => "hstore" },
           ],
         }
       }
