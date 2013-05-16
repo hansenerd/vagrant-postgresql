@@ -24,14 +24,9 @@ To destroy the database server do the following (this will remove all data):
 
     vagrant destroy
 
-Then you should be able to navigate to http://localhost:8080/phppgadmin and log
-into the database server using the username *postgres* and password *password*
+Postgres Admin: postgres, Password: password
 
-From a terminal you can also start a shell (given that you have the postgresql
-client on your host operating system).
-
-    psql -h localhost -U postgres --password
-    enter password: password
+DB for tests: postgres://postgres:password@localhost:5432/testdb
 
 ## Troubleshooting
 
