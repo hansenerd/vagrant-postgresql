@@ -14,15 +14,15 @@ ubuntu 12.04 server running postgresql and phppgadmin.
 
 To get the server going execute the following in the directory:
 
-    script/database up
+    vagrant up
 
 To shutdown the database server do the following:
 
-    script/database down
+    vagrant halt
 
 To destroy the database server do the following (this will remove all data):
 
-    script/database destroy
+    vagrant destroy
 
 Then you should be able to navigate to http://localhost:8080/phppgadmin and log
 into the database server using the username *postgres* and password *password*
