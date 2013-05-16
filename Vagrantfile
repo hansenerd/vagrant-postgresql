@@ -9,7 +9,6 @@ Vagrant::Config.run do |config|
   config.vm.define "database" do |cfg|
     cfg.vm.forward_port 11211, 11211
     cfg.vm.forward_port 5432, 5432
-    cfg.vm.forward_port 80, 8080
     cfg.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = File.join(HERE, 'cookbooks')
       chef.add_recipe("apt")
