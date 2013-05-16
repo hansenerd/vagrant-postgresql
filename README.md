@@ -30,6 +30,6 @@ DB for tests: postgres://postgres:password@localhost:5432/testdb
 
 ## Troubleshooting
 
-This vagrant box takes ports 5432 and 8080 so if you have processes listening
+This vagrant box takes ports 5432 and 11211 so if you have processes listening
 on those ports then things might not work.
 
